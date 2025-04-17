@@ -8,21 +8,31 @@
 </head>
 <body>
   <div id="chat-container">
-    <div id="header">
-      <h1>Chatting Online</h1>
-    </div>
-    <div id="message-container"></div>
-    <div id="typing-indicator"></div>
-    <div id="input-area">
-      <input id="username" type="text" placeholder="Your Name (optional)">
-      <input id="message-input" type="text" placeholder="Type a message...">
-      <button id="send-button">Send</button>
-    </div>
+    <header>
+      <h1>💬 Chatting Online</h1>
+      <button id="theme-toggle">🌙</button>
+    </header>
+    <aside id="user-list">
+      <h2>Online Users</h2>
+      <ul></ul>
+    </aside>
+    <main>
+      <div id="message-container"></div>
+      <div id="typing-indicator"></div>
+      <div id="input-area">
+        <input id="username" type="text" placeholder="Your Name...">
+        <select id="recipient">
+          <option value="all">Public</option>
+        </select>
+        <input id="message-input" type="text" placeholder="Type a message...">
+        <button id="send-button">Send</button>
+      </div>
+    </main>
   </div>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
