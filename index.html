@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chatting Online</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatApp WhatsApp Style</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Login / Register Form -->
-  <div id="auth-container">
-    <h2>Login or Register</h2>
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <button id="login-btn">Login</button>
-    <button id="register-btn">Register</button>
-    <div id="auth-error"></div>
+  <!-- Auth Screen -->
+  <div id="auth-container" class="screen">
+    <div class="auth-box">
+      <h2>Welcome to ChatApp</h2>
+      <input id="email" type="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Password" />
+      <div class="auth-buttons">
+        <button id="login-btn" class="btn">Login</button>
+        <button id="register-btn" class="btn outline">Register</button>
+      </div>
+      <div id="auth-error" class="error"></div>
+    </div>
   </div>
 
-  <!-- Chat Container -->
-  <div id="chat-container" class="hidden">
-    <header>
-      <h1>💬 Chat App</h1>
-      <div id="user-info">
-        <span id="display-name"></span>
-        <button id="settings-btn">⚙️</button>
-        <button id="logout-btn">Logout</button>
-      </div>
-      <button id="theme-toggle">🌙</button>
-    </header>
-    <aside id="user-list">
-      <h2>Online Users</h2>
-      <ul></ul>
+  <!-- Main Chat Screen -->
+  <div id="chat-container" class="screen hidden">
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <h3>Chats</h3>
+        <button id="new-chat-btn" class="icon-btn">✚</button>
+      </header>
+      <ul id="user-list" class="chat-list"></ul>
     </aside>
-    <main>
-      <div id="message-container"></div>
-      <div id="typing-indicator"></div>
-      <div id="input-area">
-        <select id="recipient">
-          <option value="all">Public</option>
-        </select>
-        <input id="message-input" type="text" placeholder="Type a message...">
-        <button id="send-button">Send</button>
+    <section class="chat-area">
+      <header class="chat-header">
+        <div class="avatar"></div>
+        <div class="chat-title">
+          <h3 id="display-name">User</h3>
+          <span id="status-text" class="status">Online</span>
+        </div>
+        <div class="header-actions">
+          <button id="settings-btn" class="icon-btn">⚙️</button>
+          <button id="logout-btn" class="icon-btn">⎋</button>
+        </div>
+      </header>
+
+      <div id="message-container" class="messages"></div>
+      <div id="typing-indicator" class="typing"></div>
+      <div class="input-area">
+        <input id="message-input" type="text" placeholder="Type a message" />
+        <button id="send-button" class="send-btn">➤</button>
       </div>
-    </main>
+    </section>
 
     <!-- Settings Modal -->
     <div id="settings-modal" class="modal hidden">
       <div class="modal-content">
-        <h3>Settings</h3>
-        <label>Nickname:</label>
-        <input id="nickname-input" type="text">
-        <button id="save-settings-btn">Save</button>
-        <button id="close-settings-btn">Close</button>
+        <h3>Profile Settings</h3>
+        <input id="nickname-input" type="text" placeholder="Set Nickname" />
+        <div class="modal-actions">
+          <button id="save-settings-btn" class="btn">Save</button>
+          <button id="close-settings-btn" class="btn outline">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
