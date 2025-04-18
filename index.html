@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChatApp WhatsApp Style</title>
+  <title>ChatApp</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Auth Screen -->
   <div id="auth-container" class="screen">
     <div class="auth-box">
-      <h2>Welcome to ChatApp</h2>
-      <input id="email" type="email" placeholder="Email" />
-      <input id="password" type="password" placeholder="Password" />
+      <h2>ChatApp</h2>
+      <input id="email" type="email" placeholder="Email" autocomplete="username" />
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
       <div class="auth-buttons">
         <button id="login-btn" class="btn">Login</button>
         <button id="register-btn" class="btn outline">Register</button>
@@ -32,9 +32,10 @@
     </aside>
     <section class="chat-area">
       <header class="chat-header">
+        <button id="menu-btn" class="icon-btn menu-btn">☰</button>
         <div class="avatar"></div>
         <div class="chat-title">
-          <h3 id="display-name">User</h3>
+          <h3 id="display-name">Public Chat</h3>
           <span id="status-text" class="status">Online</span>
         </div>
         <div class="header-actions">
