@@ -7,9 +7,25 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="chat-container">
+  <!-- Login / Register Form -->
+  <div id="auth-container">
+    <h2>Login or Register</h2>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button id="login-btn">Login</button>
+    <button id="register-btn">Register</button>
+    <div id="auth-error"></div>
+  </div>
+
+  <!-- Chat Container -->
+  <div id="chat-container" class="hidden">
     <header>
-      <h1>💬 Chatting Online</h1>
+      <h1>💬 Chat App</h1>
+      <div id="user-info">
+        <span id="display-name"></span>
+        <button id="settings-btn">⚙️</button>
+        <button id="logout-btn">Logout</button>
+      </div>
       <button id="theme-toggle">🌙</button>
     </header>
     <aside id="user-list">
@@ -20,7 +36,6 @@
       <div id="message-container"></div>
       <div id="typing-indicator"></div>
       <div id="input-area">
-        <input id="username" type="text" placeholder="Your Name...">
         <select id="recipient">
           <option value="all">Public</option>
         </select>
@@ -28,10 +43,22 @@
         <button id="send-button">Send</button>
       </div>
     </main>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Settings</h3>
+        <label>Nickname:</label>
+        <input id="nickname-input" type="text">
+        <button id="save-settings-btn">Save</button>
+        <button id="close-settings-btn">Close</button>
+      </div>
+    </div>
   </div>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
   <script type="module" src="script.js"></script>
 </body>
