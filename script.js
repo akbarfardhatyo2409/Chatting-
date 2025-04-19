@@ -19,8 +19,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-// DOM elements
+// DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+  // Elements
   const authContainer = document.getElementById('auth-container');
   const chatContainer = document.getElementById('chat-container');
   const emailEl = document.getElementById('email');
@@ -42,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveSettingsBtn = document.getElementById('save-settings-btn');
   const closeSettingsBtn = document.getElementById('close-settings-btn');
   const menuBtn = document.getElementById('menu-btn');
+
+  // Ensure modal hidden initially
+  settingsModal.classList.add('hidden');
 
   let currentUser = null;
   let currentChatUser = 'all';
@@ -101,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Send & receive messages
+  // Send message
   sendBtn.onclick = () => {
     const text = msgInput.value.trim(); if (!text) return;
     push(ref(db, 'messages'), { from: currentUser.uid, to: currentChatUser, text, ts: Date.now() });
@@ -109,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     set(ref(db, `typing/${currentUser.uid}`), null);
   };
 
+  // Receive messages
   onChildAdded(ref(db, 'messages'), snap => {
     const { from, to, text } = snap.val();
     if (to === 'all' || to === currentUser.uid || from === currentUser.uid) {
@@ -130,18 +135,4 @@ document.addEventListener('DOMContentLoaded', () => {
     set(ref(db, `typing/${currentUser.uid}`), true);
     setTimeout(() => set(ref(db, `typing/${currentUser.uid}`), null), 1500);
   });
-  onValue(ref(db, 'typing'), snap => {
-    const typers = [];
-    snap.forEach(s => s.val() && typers.push(s.key));
-    const others = typers.filter(k => k !== currentUser.uid);
-    typingEl.textContent = others.length ? `${others.length>1?'Multiple users are':'User is'} typing...` : '';
-  });
-
-  // Settings modal
-  settingsBtn.onclick = () => settingsModal.classList.remove('hidden');
-  closeSettingsBtn.onclick = () => settingsModal.classList.add('hidden');
-  saveSettingsBtn.onclick = () => {
-    const nick = nicknameInput.value.trim(); if (nick) updateProfile(currentUser, { displayName: nick }).then(() => displayNameEl.textContent = nick);
-    settingsModal.classList.add('hidden');
-  };
-});
+  onValue(ref(db, 'typing'), snap => {\
