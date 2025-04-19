@@ -2,73 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChatApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>ChatApp Pro</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Auth Screen -->
-  <div id="auth-container" class="screen">
-    <div class="auth-box">
-      <h2>ChatApp</h2>
+  <div id="auth-screen" class="screen">
+    <div class="card auth-card">
+      <h2>ChatApp Pro</h2>
       <input id="email" type="email" placeholder="Email" autocomplete="username" />
       <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
-      <div class="auth-buttons">
-        <button id="login-btn" class="btn">Login</button>
+      <div class="btn-group">
+        <button id="login-btn" class="btn primary">Login</button>
         <button id="register-btn" class="btn outline">Register</button>
       </div>
       <div id="auth-error" class="error"></div>
     </div>
   </div>
 
-  <!-- Main Chat Screen -->
-  <div id="chat-container" class="screen hidden">
+  <!-- Main Screen -->
+  <div id="main-screen" class="screen hidden">
     <aside class="sidebar">
       <header class="sidebar-header">
         <h3>Chats</h3>
-        <button id="new-chat-btn" class="icon-btn">✚</button>
+        <button id="new-chat-btn" class="icon-btn" title="New Chat">✚</button>
       </header>
-      <ul id="user-list" class="chat-list"></ul>
+      <ul id="chat-list" class="chat-list"></ul>
     </aside>
     <section class="chat-area">
       <header class="chat-header">
         <button id="menu-btn" class="icon-btn menu-btn">☰</button>
-        <div class="avatar"></div>
-        <div class="chat-title">
-          <h3 id="display-name">Public Chat</h3>
-          <span id="status-text" class="status">Online</span>
+        <div class="avatar" id="chat-avatar"></div>
+        <div class="chat-info">
+          <h3 id="chat-title">Public Chat</h3>
+          <span id="chat-status" class="status">Online</span>
         </div>
-        <div class="header-actions">
+        <div class="actions">
           <button id="settings-btn" class="icon-btn">⚙️</button>
           <button id="logout-btn" class="icon-btn">⎋</button>
         </div>
       </header>
-
-      <div id="message-container" class="messages"></div>
+      <div id="messages" class="messages"></div>
       <div id="typing-indicator" class="typing"></div>
       <div class="input-area">
-        <input id="message-input" type="text" placeholder="Type a message" />
-        <button id="send-button" class="send-btn">➤</button>
+        <button id="attach-btn" class="icon-btn" title="Attach Image">📎</button>
+        <input id="msg-input" type="text" placeholder="Type a message..." />
+        <button id="send-btn" class="btn send-btn" disabled>➤</button>
       </div>
     </section>
 
-    <!-- Settings Modal -->
+    <!-- Profile Settings -->
     <div id="settings-modal" class="modal hidden">
-      <div class="modal-content">
+      <div class="modal-card">
         <h3>Profile Settings</h3>
-        <input id="nickname-input" type="text" placeholder="Set Nickname" />
-        <div class="modal-actions">
-          <button id="save-settings-btn" class="btn">Save</button>
+        <input id="nickname-input" type="text" placeholder="Nickname" />
+        <div class="btn-group">
+          <button id="save-settings-btn" class="btn primary">Save</button>
           <button id="close-settings-btn" class="btn outline">Cancel</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js"></script>
   <script type="module" src="script.js"></script>
 </body>
 </html>
